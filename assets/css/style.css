@@ -57,7 +57,21 @@
 .graph tbody th {
 	text-align:right;
 }
-
+.table-container{
+	width:100%;
+}
+.table-container table tr td{
+	font-size:15px;
+	white-space:nowrap;
+}
+@media(max-width:900px){
+	.table-container{
+		overflow-x:scroll;
+		-webkit-overflow-scrolling: touch;        
+		-ms-overflow-style: none; /* IE 11 */        
+		scrollbar-width: none; /* Firefox 64 */
+	}
+}
 @supports (display:grid) {
 
 	@media (min-width:32em) {
