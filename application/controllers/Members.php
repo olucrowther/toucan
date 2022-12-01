@@ -6,147 +6,188 @@ class Members extends CI_Controller {
 	
 	public function member_form()
 	{
-        if ( ! file_exists(APPPATH.'views/member-form.php'))
-        {
-            // Whoops, we don't have a page for that!
+        if($this->session->has_userdate('loggedIn')){
 
-            show_404();
+            if ( ! file_exists(APPPATH.'views/member-form.php'))
+            {
+                // Whoops, we don't have a page for that!
+
+                show_404();
+            }
+
+            $data['title'] = 'Add Member Form';
+
+            $data['page_link'] = 'member-form';
+
+            $data['schools'] = $this->members_model->getSchools();
+
+            $this->load->view('templates/header', $data);
+
+            $this->load->view('templates/sidebar', $data);
+
+            $this->load->view('member-form', $data);
+
+            $this->load->view('templates/footer');
+
+        }else{
+
+            redirect( base_url() ,'refresh');
+
         }
-
-        $data['title'] = 'Add Member Form';
-
-        $data['page_link'] = 'member-form';
-
-        $data['schools'] = $this->members_model->getSchools();
-
-        $this->load->view('templates/header', $data);
-
-        $this->load->view('templates/sidebar', $data);
-
-		$this->load->view('member-form', $data);
-
-        $this->load->view('templates/footer');
 
 	}
 
     public function member_list()
 	{
-        if ( ! file_exists(APPPATH.'views/member-list.php'))
-        {
-            // Whoops, we don't have a page for that!
+        if($this->session->has_userdate('loggedIn')){
+            if ( ! file_exists(APPPATH.'views/member-list.php'))
+            {
+                // Whoops, we don't have a page for that!
 
-            show_404();
+                show_404();
+            }
+
+            $data['members'] = $this->members_model->getMembersDetails();
+
+            $data['page_link'] = 'member-list';
+
+            $data['title'] = 'Member List';
+
+            $this->load->view('templates/header', $data);
+
+            $this->load->view('templates/sidebar', $data);
+
+            $this->load->view('member-list', $data);
+
+            $this->load->view('templates/footer');
+
+        }else{
+
+            redirect( base_url() ,'refresh');
+
         }
 
-        $data['members'] = $this->members_model->getMembersDetails();
-
-        $data['page_link'] = 'member-list';
-
-        $data['title'] = 'Member List';
-
-        $this->load->view('templates/header', $data);
-
-        $this->load->view('templates/sidebar', $data);
-
-		$this->load->view('member-list', $data);
-
-        $this->load->view('templates/footer');
 
 	}
 
     public function search_school_list()
 	{
-        if ( ! file_exists(APPPATH.'views/member-list.php'))
-        {
-            // Whoops, we don't have a page for that!
+        if($this->session->has_userdate('loggedIn')){
+            if ( ! file_exists(APPPATH.'views/member-list.php'))
+            {
+                // Whoops, we don't have a page for that!
 
-            show_404();
+                show_404();
+            }
+
+            $s_data = [];
+
+            $s_data['country']  = $this->input->post('country');
+
+            (@$s_data['country'] === null || @$s_data['country'] === '')? $s_data = $this->session->userdata('search') : $this->session->set_userdata('search', $s_data);
+
+            $data['schools'] = $this->members_model->getSchoolDetailByCountry($s_data);
+
+            $data['countries'] = $this->members_model->getCountries();
+
+            $data['page_link'] = 'school-list';
+
+            $data['title'] = 'School List';
+
+            $this->load->view('templates/header', $data);
+
+            $this->load->view('templates/sidebar', $data);
+
+            $this->load->view('school-list', $data);
+
+            $this->load->view('templates/footer');
+
+        }else{
+
+            redirect( base_url() ,'refresh');
+
         }
 
-        $s_data = [];
-
-        $s_data['country']  = $this->input->post('country');
-
-        (@$s_data['country'] === null || @$s_data['country'] === '')? $s_data = $this->session->userdata('search') : $this->session->set_userdata('search', $s_data);
-
-        $data['schools'] = $this->members_model->getSchoolDetailByCountry($s_data);
-
-        $data['countries'] = $this->members_model->getCountries();
-
-        $data['page_link'] = 'school-list';
-
-        $data['title'] = 'School List';
-
-        $this->load->view('templates/header', $data);
-
-        $this->load->view('templates/sidebar', $data);
-
-		$this->load->view('school-list', $data);
-
-        $this->load->view('templates/footer');
 
 	}
 
     public function school_list()
 	{
-        if ( ! file_exists(APPPATH.'views/school-list.php'))
-        {
-            // Whoops, we don't have a page for that!
+        if($this->session->has_userdate('loggedIn')){
+            if ( ! file_exists(APPPATH.'views/school-list.php'))
+            {
+                // Whoops, we don't have a page for that!
 
-            show_404();
+                show_404();
+            }
+
+            $data['schools'] = $this->members_model->getSchoolDetails();
+
+            $data['countries'] = $this->members_model->getCountries();
+
+            $data['page_link'] = 'school-list';
+
+            $data['title'] = 'School List';
+
+            $this->load->view('templates/header', $data);
+
+            $this->load->view('templates/sidebar', $data);
+
+            $this->load->view('school-list', $data);
+
+            $this->load->view('templates/footer');
+
+        }else{
+
+            redirect( base_url() ,'refresh');
+
         }
 
-        $data['schools'] = $this->members_model->getSchoolDetails();
-
-        $data['countries'] = $this->members_model->getCountries();
-
-        $data['page_link'] = 'school-list';
-
-        $data['title'] = 'School List';
-
-        $this->load->view('templates/header', $data);
-
-        $this->load->view('templates/sidebar', $data);
-
-		$this->load->view('school-list', $data);
-
-        $this->load->view('templates/footer');
 
 	}
 
     public function member_chart()
 	{
-        if ( ! file_exists(APPPATH.'views/member-chart.php'))
-        {
-            // Whoops, we don't have a page for that!
+        if($this->session->has_userdate('loggedIn')){
+		
+            if ( ! file_exists(APPPATH.'views/member-chart.php'))
+            {
+                // Whoops, we don't have a page for that!
 
-            show_404();
+                show_404();
+            }
+
+
+            $result = $this->members_model->getSchoolDetails();
+    
+            foreach($result as $row) {
+    
+                $data['label'][] = $row['school_name'];
+    
+                $data['data'][] = (int) $row['no_of_students'];
+    
+            }
+    
+            $data['chart_data'] = json_encode($data);
+
+            $data['title'] = 'Member Chart';
+
+            $data['page_link'] = 'member-chart';
+
+            $this->load->view('templates/header', $data);
+
+            $this->load->view('templates/sidebar', $data);
+
+            $this->load->view('member-chart', $data);
+
+            $this->load->view('templates/footer');
+
+        }else{
+
+            redirect( base_url() ,'refresh');
+
         }
 
-
-        $result = $this->members_model->getSchoolDetails();
-  
-        foreach($result as $row) {
-  
-              $data['label'][] = $row['school_name'];
-  
-              $data['data'][] = (int) $row['no_of_students'];
-  
-        }
-  
-        $data['chart_data'] = json_encode($data);
-
-        $data['title'] = 'Member Chart';
-
-        $data['page_link'] = 'member-chart';
-
-        $this->load->view('templates/header', $data);
-
-        $this->load->view('templates/sidebar', $data);
-
-		$this->load->view('member-chart', $data);
-
-        $this->load->view('templates/footer');
 
 	}
 
@@ -224,9 +265,4 @@ class Members extends CI_Controller {
         exit; 
    
     }
-
-    public function bar_chart() {
-
-        
-      }
 }
