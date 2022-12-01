@@ -113,15 +113,15 @@
 
         legend: {
 
-          display: true,
+          display: false,
 
           position: "bottom",
 
           labels: {
 
-            fontColor: "#333",
+            fontColor: "transparent",
 
-            fontSize: 16
+            fontSize: 12
 
           }
 
