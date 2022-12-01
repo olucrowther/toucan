@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <a href="<?php echo base_url(); ?>export-member-list"><i class="bx bx-file"></i>Export CSV</a>
-            <div class="col-sm">
+            <div class="col-8">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -25,10 +25,11 @@
                                     <td>
                                         <?php  
                                             $schools = explode(',', $member_value['school']); 
-
+                                            echo '<ol>';
                                             for($i = 0; $i < count($schools); $i++){
-                                                echo ($i != (count($schools) - 1))? $this->members_model->getSchool($schools[$i]).', ' : $this->members_model->getSchool($schools[$i]);
+                                                echo '<li>'.$this->members_model->getSchool($schools[$i]).'</li>';
                                             }
+                                            echo '</ol>';
                                         ?>
                                     </td>
                                 </tr>
@@ -38,7 +39,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-sm">
+            <div class="col-4">
                 
             </div>
         </div>
