@@ -73,7 +73,6 @@ class Members extends CI_Controller {
     public function search_school_list()
 	{
         if($this->session->has_userdata('loggedIn')){
-		
             if ( ! file_exists(APPPATH.'views/member-list.php'))
             {
                 // Whoops, we don't have a page for that!
