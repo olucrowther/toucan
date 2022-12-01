@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1%{REQUEST_URI} [R=301,QSA,NC,L]
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|svg|svgz|jpg|png|ico|font.css|css|js)$">
+        Header set X-Content-Type-Options "nosniff"
+        Header set X-XSS-Protection "1; mode=block"
+       # Always set these headers for CORS.
+        Header always set Access-Control-Max-Age 1728000
+        Header always set Access-Control-Allow-Origin: "*"
+        Header always set Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+        Header always set Access-Control-Allow-Headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,C$
+        Header always set Access-Control-Allow-Credentials true"
+
+    </FilesMatch>
+</IfModule>
+
+# END WordPress
