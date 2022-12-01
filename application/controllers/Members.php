@@ -6,7 +6,7 @@ class Members extends CI_Controller {
 	
 	public function member_form()
 	{
-        if($this->session->has_userdate('loggedIn')){
+        if($this->session->has_userdata('loggedIn')){
 
             if ( ! file_exists(APPPATH.'views/member-form.php'))
             {
@@ -39,7 +39,7 @@ class Members extends CI_Controller {
 
     public function member_list()
 	{
-        if($this->session->has_userdate('loggedIn')){
+        if($this->session->has_userdata('loggedIn')){
             if ( ! file_exists(APPPATH.'views/member-list.php'))
             {
                 // Whoops, we don't have a page for that!
@@ -72,7 +72,8 @@ class Members extends CI_Controller {
 
     public function search_school_list()
 	{
-        if($this->session->has_userdate('loggedIn')){
+        if($this->session->has_userdata('loggedIn')){
+		
             if ( ! file_exists(APPPATH.'views/member-list.php'))
             {
                 // Whoops, we don't have a page for that!
@@ -113,7 +114,7 @@ class Members extends CI_Controller {
 
     public function school_list()
 	{
-        if($this->session->has_userdate('loggedIn')){
+        if($this->session->has_userdata('loggedIn')){
             if ( ! file_exists(APPPATH.'views/school-list.php'))
             {
                 // Whoops, we don't have a page for that!
@@ -148,8 +149,7 @@ class Members extends CI_Controller {
 
     public function member_chart()
 	{
-        if($this->session->has_userdate('loggedIn')){
-		
+        if($this->session->has_userdata('loggedIn')){
             if ( ! file_exists(APPPATH.'views/member-chart.php'))
             {
                 // Whoops, we don't have a page for that!
