@@ -157,7 +157,7 @@ class Members_model extends CI_Model {
 
 		$this->db->from('schools as a');
 		
-		if($s_data['country'])
+		if(@$s_data['country'])
 			$this->db->where('country', $s_data['country']);
 
 		$this->db->join('school_attended as b', 'a.id = b.school', 'LEFT');
