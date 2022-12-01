@@ -3,8 +3,6 @@ $(init);
 
 function init(){
 
-	var baseUrl = 'https://localhost/toucan/';
-
 	$('#loginForm').on('submit', function(e){
 		
 		e.preventDefault();
