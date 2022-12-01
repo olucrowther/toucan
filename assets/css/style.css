@@ -44,24 +44,11 @@
   .login-alert, .member-alert{
 	display:none;
   }
-  .graph {
-	margin-bottom:1em;
-  font:normal 100%/150% arial,helvetica,sans-serif;
-}
 
-.graph caption {
-	font:bold 150%/120% arial,helvetica,sans-serif;
-	padding-bottom:0.33em;
-}
-
-.graph tbody th {
-	text-align:right;
-}
 .table-container{
 	width:100%;
 }
 .table-container table tr td{
-	font-size:15px;
 	white-space:nowrap;
 }
 @media(max-width:900px){
@@ -70,5 +57,8 @@
 		-webkit-overflow-scrolling: touch;        
 		-ms-overflow-style: none; /* IE 11 */        
 		scrollbar-width: none; /* Firefox 64 */
+	}
+	.table-container table tr td{
+		font-size:15px;
 	}
 }
