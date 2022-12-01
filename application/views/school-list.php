@@ -2,7 +2,7 @@
 <div class="height-100 bg-light">
     <div class="container">
         <div class="row">            
-            <div class="col-sm">
+            <div class="col-8">
                 <div style="padding-top:20px;">
                     <form action="<?php echo base_url('search-school-list'); ?>" method="POST">
                         <div class="row g-3">
@@ -25,19 +25,33 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">School name</th>
-                        <th scope="col">No of students</th>
+                          <th scope="col">#</th>
+                          <th scope="col">School name</th>
+                          <th scope="col">No of students</th>
+                          <th scope="col">Members</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if(!empty($schools) && isset($schools)){ ?>
                             <?php $count = 1; ?>
                             <?php foreach($schools as $school => $school_value){ ?>
+                              <?php $names = array(); ?>
+                              <?php (@$school_value['name'])? $names = explode(',', $school_value['name']): ''; ?>
                                 <tr>
                                     <th scope="row"><?php echo $count; ?></th>
                                     <td><?php echo $school_value['school_name']; ?></td>
                                     <td><?php echo $school_value['no_of_students']; ?></td>
+                                    <td>
+                                      <?php 
+                                          if(!empty(@$names)){
+                                            echo '<ol>';
+                                            for($i = 0; $i < count($names); $i++){
+                                                echo '<li>'.$names[$i].'</li>';
+                                            }
+                                            echo '</ol>';
+                                          }
+                                      ?>
+                                    </td>
                                 </tr>
                                 <?php $count++; ?>
                             <?php } ?>
@@ -45,115 +59,10 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-sm">
-                <canvas id="bar-chart"></canvas>
+            <div class="col-4">
+                
             </div>
         </div>
     </div>
 </div>
-<script src="<?php echo base_url(); ?>assets/js/member.js"></script>
-<script>
-
-  $(function(){
-
-      //get the bar chart canvas
-      var cData = JSON.parse(`<?php echo $chart_data; ?>`);
-      var ctx = $("#bar-chart");
-
-      //bar chart data
-      var data = {
-        labels: cData.label,
-        datasets: [
-          {
-
-            label: cData.label,
-            data: cData.data,
-            backgroundColor: [
-              "#DEB887",
-              "#A9A9A9",
-              "#DC143C",
-              "#F4A460",
-              "#2E8B57",
-              "#1D7A46",
-              "#CDA776",
-              "#CDA776",
-              "#989898",
-              "#CB252B",
-              "#E39371",
-            ],
-
-            borderColor: [
-              "#CDA776",
-              "#989898",
-              "#CB252B",
-              "#E39371",
-              "#1D7A46",
-              "#F4A460",
-              "#CDA776",
-              "#DEB887",
-              "#A9A9A9",
-              "#DC143C",
-              "#F4A460",
-              "#2E8B57",
-            ],
-
-            borderWidth: [1, 1, 1, 1, 1,1,1,1, 1, 1, 1,1,1]
-
-          }
-
-        ]
-
-      };
-      //options
-      var options = {
-
-        responsive: true,
-
-        title: {
-
-          display: true,
-
-          position: "top",
-
-          text: "Schools",
-
-          fontSize: 16,
-
-          fontColor: "#111"
-
-        },
-
-        legend: {
-
-          display: true,
-
-          position: "bottom",
-
-          labels: {
-
-            fontColor: "#333",
-
-            fontSize: 16
-
-          }
-
-        }
-
-      }; 
-
-      //create bar Chart class object
-
-      var chart1 = new Chart(ctx, {
-
-        type: "bar",
-
-        data: data,
-
-        options: options
-
-      }); 
-
-  });
-
-</script>
 <!--Container Main end-->
