@@ -85,11 +85,13 @@ class Members_model extends CI_Model {
 	}
 	public function getSchoolDetails(){
 
-		$this->db->select('a.id, a.school_name, count(student) as no_of_students');
+		$this->db->select('a.id, a.school_name, count(student) as no_of_students, GROUP_CONCAT(c.name) AS name');
 
 		$this->db->from('schools as a');
 
 		$this->db->join('school_attended as b', 'a.id = b.school', 'LEFT');
+
+		$this->db->join('members_tbl as c', 'c.id = b.student', 'LEFT');
 
 		$this->db->group_by('school_name');
 
