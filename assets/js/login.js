@@ -26,7 +26,7 @@ function init(){
     			if(data == 1){
     			    
     			    //redirect to employee list page
-					window.location.href = baseUrl+"member-list";
+					window.location.href = baseUrl+"member-form";
 	                
     			}else{
     			    
