@@ -84,7 +84,7 @@ class Members extends CI_Controller {
 
             $s_data['country']  = $this->input->post('country');
 
-            (@$s_data['country'] === null || @$s_data['country'] === '')? $s_data = $this->session->userdata('search') : $this->session->set_userdata('search', $s_data);
+            (@$s_data['country'] === null)? $s_data = $this->session->userdata('search') : $this->session->set_userdata('search', $s_data);
 
             $data['schools'] = $this->members_model->getSchoolDetailByCountry($s_data);
 
