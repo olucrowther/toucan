@@ -11,7 +11,7 @@
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <link href="<?php echo base_url(); ?>assets/css/nav.css" rel="stylesheet" type="text/css" /> 
-        <script>var baseUrl = "https://localhost/toucan/";</script>   
+        <script>var baseUrl = '<?php echo base_url(); ?>';</script>   
         <script src="<?php echo base_url(); ?>assets/js/nav.js"></script>
         <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" type="text/css" />
     </head>
