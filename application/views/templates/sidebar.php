@@ -5,7 +5,7 @@
 <div class="l-navbar" id="nav-bar">
     <nav class="nav">
         <div> 
-            <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Toucan Demo</span> </a>
+            <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Toucan Demo update</span> </a>
             <div class="nav_list"> 
                 <!--<a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>--> 
                 <a href="<?php echo base_url('member-form'); ?>" class="nav_link <?php echo (@$page_link == 'member-form')? 'active' : ''; ?>"> <i class='bx bx-user-plus nav_icon'></i> <span class="nav_name">Add Member</span> </a> 
